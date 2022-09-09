@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2022 at 10:12 AM
+-- Generation Time: Sep 09, 2022 at 10:18 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -259,7 +259,6 @@ ALTER TABLE `detail_pagina_info`
   ADD KEY `favoriet_id` (`favoriet_id`),
   ADD KEY `gerecht_id` (`gerecht_id`),
   ADD KEY `opmerkingen_id` (`opmerkingen_id`),
-  ADD KEY `user_id` (`user_id`),
   ADD KEY `waardering_id` (`waardering_id`);
 
 --
@@ -421,7 +420,6 @@ ALTER TABLE `detail_pagina_info`
   ADD CONSTRAINT `detail_pagina_info_ibfk_2` FOREIGN KEY (`favoriet_id`) REFERENCES `favoriet` (`favoriet_id`),
   ADD CONSTRAINT `detail_pagina_info_ibfk_3` FOREIGN KEY (`gerecht_id`) REFERENCES `gerecht` (`gerecht_id`),
   ADD CONSTRAINT `detail_pagina_info_ibfk_4` FOREIGN KEY (`opmerkingen_id`) REFERENCES `opmerkingen` (`opmerkingen_id`),
-  ADD CONSTRAINT `detail_pagina_info_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `detail_pagina_info_ibfk_6` FOREIGN KEY (`waardering_id`) REFERENCES `waardering` (`waardering_id`);
 
 --
