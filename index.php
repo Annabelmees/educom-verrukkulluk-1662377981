@@ -19,13 +19,15 @@ $ing = new ingrediënt($db->getConnection());
 
 
 /// VERWERK 
-$data = $art->selecteerArtikel(5);
-$data = $us->selecteerUser(4);
-$data = $kt->selecteerKeuken_Type(3);
-$data = $ing->selecteerIngrediënt(7);
+//$data = $art->selecteerArtikel(5);
+//$data = $us->selecteerUser(4);
+//$data = $kt->selecteerKeuken_Type(3);
+$data = $ing->selecteerIngrediënt(2);
 //$data = $det->selecteerDetail_Pagina_Info(2);
 //$data = $ger->selecteerGerecht(1)
 
 /// RETURN
+
+echo "<pre>";
 var_dump($data);
 
