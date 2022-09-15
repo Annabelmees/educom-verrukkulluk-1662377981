@@ -20,7 +20,6 @@ class ingredient {
         $sql = "select * from ingredient where gerecht_id = $gerecht_id";
         
         $result = mysqli_query($this->connection, $sql);
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
         $return = [];
 
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
