@@ -34,134 +34,14 @@ class gerecht {
         return($detail_pagina_info);    
     }
 
-    public function selecteerUser($user_id) {
+    private function selecteerUser($user_id) {
         $user = $this->us->selecteerUser($user_id);
         return($user);
     }
 
-    public function selecteerIngredient($gerecht_id) {
+    private function selecteerIngredient($gerecht_id) {
         $ingredient = $this->ing->selecteerIngredient($gerecht_id);
         return($ingredient);
-    }
-
-    public function berekenCalorieen($gerecht_id) {
-        //calorieen in artikel zijn calorieen per 100 gram
-        
-        //aanhalen gegevens:
-        $sql = "select ingredient_hoeveelheid, artikel_id from ingredient where gerecht_id = $gerecht_id";
-        
-        $result = mysqli_query($this->connection, $sql);
-        $artCal = [];
-        $hoeveelheid = [];
-
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $artikel_id = $row['artikel_id'];
-            $artikel = $this->selecteerArtikel($artikel_id);
-
-            $artCal[] = [
-                "artikel_calorieen" => $artikel["artikel_calorieen"]
-            ];
-            $hoeveelheid[] = [
-                "ingredient_hoeveelheid" => $row["ingredient_hoeveelheid"]
-            ];
-
-            //berekening:
-            //$cal = ((int)$hoeveelheid / 100) * (int)$cal;
-        }
-
-        return $cal;
-    }
-
-    public function berekenPrijs($gerecht_id) {
-        //aanhalen gegevens:
-        $sql = "select ingredient_hoeveelheid, artikel_id from ingredient where gerecht_id = $gerecht_id";
-        
-        $result = mysqli_query($this->connection, $sql);
-        $artPrijs = [];
-        $artHoeveelheid = [];
-        $ingHoeveelheid = [];
-        
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $artikel_id = $row['artikel_id'];
-            $artikel = $this->selecteerArtikel($artikel_id);
-
-            $artPrijs[] = [
-                "artikel_prijs" => $artikel["artikel_prijs"],
-            ];
-            $artHoeveelheid[] = [
-                "artikel_verpakking" => $artikel["artikel_verpakking"],
-            ];
-            $ingHoeveelheid[] = [
-                "ingredient_hoeveelheid" => $ingredient["ingredient_hoeveelheid"],
-            ];
-
-
-            //berekening:
-            //$prijs =
-        }
-
-        return $prijs;
-
-    }
-
-    public function selecteerWaardering($gerecht_id) {
-        $sql = "select * from detail_pagina_info where gerecht_id = $gerecht_id";
-        
-        $result = mysqli_query($this->connection, $sql);
-        $return = [];
-
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $return[] = [
-                    "detail_pagina_info_id" => $row["detail_pagina_info_id"],
-                    "gerecht_id" => $row["gerecht_id"],
-                    "record_type" => $row["record_type"],
-                    "nummer" => $row["nummer"],
-            ];
-        //op dezelfde manier $row["record_type"] == "W" filteren als "F" en "O" in detail_pagina_info class
-        }
-
-        return $return;
-
-    }
-
-    public function selecteerBereidingswijze($gerecht_id) {
-        $sql = "select * from detail_pagina_info where gerecht_id = $gerecht_id";
-
-        $result = mysqli_query($this->connection, $sql);
-        $return = [];
-
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $return[] = [
-                    "detail_pagina_info_id" => $row["detail_pagina_info_id"],
-                    "gerecht_id" => $row["gerecht_id"],
-                    "record_type" => $row["record_type"],
-                    "text_inhoud" => $row["text_inhoud"],
-                    "nummer" => $row["nummer"],
-            ];
-        //op dezelfde manier $row["record_type"] == "B" filteren als "F" en "O" in detail_pagina_info class
-        }
-
-        return $return;
-    }
-
-    public function selecteerOpmerkingen($gerecht_id) {
-        $sql = "select * from detail_pagina_info where gerecht_id = $gerecht_id";
-
-        $result = mysqli_query($this->connection, $sql);
-
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $return[] = [
-                    "detail_pagina_info_id" => $row["detail_pagina_info_id"],
-                    "gerecht_id" => $row["gerecht_id"],
-                    "record_type" => $row["record_type"],
-                    "text_inhoud" => $row["text_inhoud"],
-                    "nummer" => $row["nummer"],
-                    "user_id" => $row["user_id"],
-            ];
-        //op dezelfde manier $row["record_type"] == "O" filteren als "F" en "O" in detail_pagina_info class
-        }
-
-        return $return;
     }
 
     public function selecteerGerecht($user_id) {
@@ -173,7 +53,7 @@ class gerecht {
 
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $keuken_type_id = $row['keuken_type_id'];	
-            $keuken_type = $this->selecteerKeuken_Type($keuken_type_id);
+            $keuken_type = $this->selecteerKeuken_Type($keuken_type_id);    
 
             $return[] = [
                 "user_id" => $row["user_id"],
@@ -186,11 +66,95 @@ class gerecht {
                 "keuken_type_id" => $row["keuken_type_id"],
                 "keuken" => $keuken_type["keuken"],
                 "type" => $keuken_type["type"],
+
+                //"ingredient_id" =>
+                //"ingredient_hoeveelheid" =>
+                //"artikel_id" =>
+                //"artikel_naam" =>
+                //"artikel_omschrijving" =>
+                //"artikel_foto" =>
+                //"artikel_prijs" =>
+                //"artikel_eenheid" =>
+                //"artikel_verpakking" =>
+                //"artikel_calorieen" =>
+
             ];
         }
 
         return $return; 
 
+    }
+
+    public function berekenCalorieen($gerecht_id) {
+        //calorieen in artikel zijn calorieen per 100 gram
+        
+        $artCal = $artikel["artikel_calorieen"];
+        $hoeveelheid = $ingredient["ingredient_hoeveelheid"];
+
+        $cal = ((int)$hoeveelheid / 100) * (int)$cal;
+
+        return $cal;
+    }
+
+    public function berekenPrijs($gerecht_id) {
+        $artPrijs = $artikel["artikel_prijs"];
+        $artHoeveelheid = $artikel["artikel_verpakking"];
+        $ingHoeveelheid = $ingredient["ingredient_hoeveelheid"];
+
+        if(($artHoeveelheid / $ingHoeveelheid) >= 1) {
+            $artAantal = 1;
+        } elseif(($artHoeveelheid / $ingHoeveelheid) < 1 && ($artHoeveelheid / $ingHoeveelheid) >= 0.5) {
+            $artAantal = 2;
+        } else {
+            $artAantal = 3;
+        }
+        $prijs = $artAantal * $artPrijs;
+
+        return $prijs;
+
+    }
+
+    public function selecteerWaardering($gerecht_id) {
+        if($detail_pagina_info["record_type"] == "W") {
+            $return[] = [
+                "detail_pagina_info_id" => $detail_pagina_info["detail_pagina_info_id"],
+                "gerecht_id" => $detail_pagina_info["gerecht_id"],
+                "record_type" => $detail_pagina_info["record_type"],
+                "nummer" => $detail_pagina_info["nummer"],
+            ];
+        }
+    
+        return $return;
+    
+    }
+    
+    public function selecteerBereidingswijze($gerecht_id) {
+        if($detail_pagina_info["record_type"] == "B") {
+            $return[] = [
+                "detail_pagina_info_id" => $detail_pagina_info["detail_pagina_info_id"],
+                "gerecht_id" => $detail_pagina_info["gerecht_id"],
+                "record_type" => $detail_pagina_info["record_type"],
+                "text_inhoud" => $detail_pagina_info["text_inhoud"],
+                "nummer" => $detail_pagina_info["nummer"],
+            ];
+        }
+    
+        return $return;
+    }
+
+    public function selecteerOpmerkingen($gerecht_id) {
+        if($detail_pagina_info["record_type"] == "O") {
+            $return[] = [
+                "detail_pagina_info_id" => $detail_pagina_info["detail_pagina_info_id"],
+                "gerecht_id" => $detail_pagina_info["gerecht_id"],
+                "record_type" => $detail_pagina_info["record_type"],
+                "text_inhoud" => $detail_pagina_info["text_inhoud"],
+                "nummer" => $detail_pagina_info["nummer"],
+                "user_id" => $detail_pagina_info["user_id"],
+            ];
+        }
+    
+        return $return;
     }
 
 }
