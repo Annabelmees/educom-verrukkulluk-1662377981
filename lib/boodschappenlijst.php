@@ -29,33 +29,17 @@ class boodschappenlijst {
         $sql = "select * from boodschappenlijst where user_id = $user_id";
         
         $result = mysqli_query($this->connection, $sql);
-        $boodschap = [];
+        
+        while($boodschap = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            if(mysqli_num_rows($result) > 0) {
+                if($boodschap["artikel_id"] == $artikel_id) {
+                    return $boodschap;
+                } 
+            }
 
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $artikel = $this->selecteerArtikel($artikel_id);
-            
-            $boodschap[] = [
-                "boodschap_id" => $row["boodschap_id"],
-                "user_id" => $row["user_id"],
-                "artikel_id" => $row["artikel_id"],
-                "artikel_naam" => $artikel["artikel_naam"],
-                "artikel_omschrijving" => $artikel["artikel_omschrijving"],
-                "artikel_foto" => $artikel["artikel_foto"],
-                "artikel_prijs" => $artikel["artikel_prijs"],
-                "artikel_eenheid" => $artikel["artikel_eenheid"],   
-                "artikel_verpakking" => $artikel["artikel_verpakking"],
-                "artikel_calorieen" => $artikel["artikel_calorieen"], 
-                "aantal" => $row["aantal"], 
-            ]; 
-            
-            if($row["artikel_id"] == $artikel_id) {
-                return $boodschap;
-            } 
-
+            return false;
         }
-
-        return false; 
-
+        
     }
 
    public function boodschappenToevoegen($gerecht_id, $user_id) {
@@ -74,9 +58,11 @@ class boodschappenlijst {
 
             if($this->artikelDubbel($ingredient["artikel_id"], $user_id) !== false) {
                 $sql = "update boodschappenlijst set aantal = aantal + $aantal where artikel_id = $artikel_id";
+                echo "update";
             } else {
                 $sql = "insert into boodschappenlijst (user_id, artikel_id, aantal)
                 values ($user_id, $artikel_id, $aantal)";
+                echo "new";
             }
 
         }
