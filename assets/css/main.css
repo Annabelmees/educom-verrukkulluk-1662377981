@@ -55,8 +55,16 @@ html, body {
 }
 
 /* Header */
-.header {
+.homepage-header {
     background-image: url("https://img.hellofresh.com/f_auto,fl_lossy,q_auto,w_1200/hellofresh_s3/image/hot-smoked-salmon-spaghetti-f72ccb38.jpg");
+    background-position: center;
+    background-size: auto 668px;
+    width: 100%; 
+    height: 460px;
+}
+
+.detail-header {
+    background-image: url("");
     background-position: center;
     background-size: auto 668px;
     width: 100%; 
@@ -95,7 +103,7 @@ html, body {
     background-color: #FFF;
     font-family: "Helvetica Neue", Arial, SansSerif;
     font-size: 10px;
-    color: #F1F1F1;
+    color: #000;
 }
 
 .search:hover, .search:focus {
