@@ -1,49 +1,148 @@
+<!DOCTYPE html>
 <html lang="nl">
 <head>
-
     <title>het is verrukkuluk! :: {{ TITEL }} </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/fontawesome.css" />
 
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
 
-    <script type="text/javascript" language="javascript" src="assets/jquery/jquery-3.5.1.js"></script>
-    <script type="text/javascript" language="javascript" src="assets/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" language="javascript" src="./assets/jquery/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript" src="./assets/bootstrap/js/bootstrap.js"></script>
+</head>
 
-</html>
 <body>
 <div class="container-fluid">
 
+    {# Header: #}
     <div class="row">
         <div class="col-md-12">
-        {% block header %}
-            
-        {% endblock %}   
+            <div class="header">
+                {% block header %}
+                {% endblock %}   
+            </div>
         </div>
     </div>
 
+    {# Body: #}
     <div class="row">
         <div class="col-md-3">
-            <h2>Agenda</h2>
-            <i class="fa fa-calendar"></i> FontAwesome <a href="https://fontawesome.com/icons?d=gallery&m=free">Documentation</a><br>
-            <i class="fa fa-file-pdf"></i><a href="https://www.layoutit.com/build">Layout-it</a>
+            {# Agenda: #}
+                    <div class="row">
+                        <div class="agenda">
 
+                        <div class="agenda-img">
+                            <img src="./assets/img/verrukkulluk-agenda.png" style="width: 108px;height: auto;"/>
+                        </div> 
+                        <div class="agenda-list">
+                            <ol class="fa-ul">
+                                <li>
+                                    <div class="calender">
+                                    <i class="fa fa-calendar"></i> 
+                                    </div>
+                                    <div class="agenda-header">
+                                        <p>Vegetarisch koken</p><br>
+                                    </div>
+                                    <div class="agenda-text">
+                                        <p>Een workshop vegetarisch koken, onder<br>leiding van Trientje Hupsakee.</p><br>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="calender">
+                                    <i class="fa fa-calendar"></i> 
+                                    </div>
+                                    <div class="agenda-header">
+                                        <p>Vegetarisch koken</p><br>
+                                    </div>
+                                    <div class="agenda-text">
+                                        <p>Een workshop vegetarisch koken, onder<br>leiding van Trientje Hupsakee.</p><br>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="calender">
+                                    <i class="fa fa-calendar"></i> 
+                                    </div>
+                                    <div class="agenda-header">
+                                        <p>Vegetarisch koken</p><br>
+                                    </div>
+                                    <div class="agenda-text">
+                                        <p>Een workshop vegetarisch koken, onder<br>leiding van Trientje Hupsakee.</p><br>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="calender">
+                                    <i class="fa fa-calendar"></i> 
+                                    </div>
+                                    <div class="agenda-header">
+                                        <p>Vegetarisch koken</p><br>
+                                    </div>
+                                    <div class="agenda-text">
+                                        <p>Een workshop vegetarisch koken, onder<br>leiding van Trientje Hupsakee.</p><br>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="calender">
+                                    <i class="fa fa-calendar"></i> 
+                                    </div>
+                                    <div class="agenda-header">
+                                        <p>Vegetarisch koken</p><br>
+                                    </div>
+                                    <div class="agenda-text">
+                                        <p>Een workshop vegetarisch koken, onder<br>leiding van Trientje Hupsakee.</p><br>
+                                    </div>
+                                </li>
+                            </ol> 
+                        </div>
 
+                        </div>
+                    </div>
+
+            {# Login: #}
+                    <div class="row">
+                        <div class="login">
+                    
+                        <div class="login-img">
+                            <img src="./assets/img/verrukkulluk-login.png" style="width: 100px;height: auto;"/>
+                        </div>
+                        <div class="login-input">
+                            Email<br><input type="text" name="Email"><br>
+                            Wachtwoord<br><input type="text" name="Wachtwoord"><br>
+                        </div>
+                        <div class="login-submit">
+                            <div>Login</div>
+                        </div> 
+
+                        </div>
+                    </div>
         </div>
+
         <div class="col-md-9">
-            <h2>Content</h2>
+            {# Gerechten: #}
             {%  block content %}
             {%  endblock %}
         </div>
+
     </div>
 
-
+    {# Footer: #}
     <div class="row">
         <div class="col-md-12">
-            <h1>Footer</h1>
+            <div class="footer">
+
+                <div class="footer-logo">
+                    <img src="assets/img/verrukkulluk-pay-off.png" style="width: 75px;height: auto;"/>
+                </div>
+                <div class="contact">
+                    <img src="assets/img/verrukkulluk-contact.png" style="width: 120px;height: auto;"/>
+                </div>
+                <div class="contact-info">
+                    <p>Verrukkulluk.nl<br>Poststraat 2b<br>Sittard<br>info@verrukkulluk.nl</p>
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -51,3 +150,4 @@
 </div>
 
 </body>
+</html>

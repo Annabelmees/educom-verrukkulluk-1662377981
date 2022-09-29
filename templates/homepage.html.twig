@@ -1,27 +1,64 @@
-{# Opnemen van de "Main" file #}
 {% extends "main.html.twig" %}
 
 {% block header %}
-<img src="assets/img/logo-v2.png"/>
+{# Logo: #}
+<div class="logo">
+    <img src="assets/img/verrukkulluk-logo-white.png" style="width: 277px;height: auto;" />
+</div>
+
+{# Zoekbalk: #}
+<div class="searchbar">
+    <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+    <input type="text" placeholder="Zoeken" class="search">
+</div>
+
+{# Navigatie: #}
+<div class="topnav">
+    <div class="topnav-trigger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="dropdown">
+            <div class="dropdown-link">
+                <a href="">Mijn Favorieten</a>
+                <a href ="">Mijn Boodschappenlijst</a>
+            </div>
+            <div class="dropdown-logo">
+                <img src="assets/img/logo-v2.png" style="width: 210px;height: auto;" />
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
-
-{# nu de block content op in de main pagina vullen #}
 {% block content %}
-    {# Dit is commentaar #}
 
-    {# Print #}
-    <h1>Heading #1</h1>
-    <h2>Heading #2</h2>
-    <h3>Heading #3 t/m 5</h3>
+<div class="row">
+    <div class="col-6">
+        <div class="gerecht1">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="gerecht2">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="gerecht3">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="gerecht4">
+        </div>
+    </div>
+</div>
 
-    <h4>Dit is de template {{  title }}</h4>
-
-{# Loop #}
+{# Loop voor ophalen gerechten data: #}
     <ul>
     {% for record in data %}
         <li>
-            <img src="{{ record.foto }}" style="width: 100px; heigfht: 100px;">
+            <img src="{{ record.foto }}" style="width: 100px; height: 100px;">
 
             {{ record.title }}
             {# sub-loop #}
@@ -40,9 +77,8 @@
         </li>
     {% endfor %}
     <ul>
-     {# Dump #}
-       <pre>
+     {# Dump gerechten data: #}
+       {#<pre>
         {{ dump(data) }}
-       </pre>
-
+       </pre>#}
 {% endblock %}
